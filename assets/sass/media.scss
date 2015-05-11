@@ -1,0 +1,142 @@
+@media (min-width: 768px) and (max-width: 1023px) {
+  header,
+  section {
+    width: 100%;
+    min-width: 769px;
+
+    background-color: grey;
+  }
+  header {
+    height: 92px;
+    h1 {
+      font-size: 36px;
+
+      top: 38px;
+      left: 33px;
+    }
+  }
+  section {
+    padding: 0 33px 130px 32px;
+  }
+  .product {
+    .feature-img {
+      width: 65.5%;
+      margin: 0 0 32px;
+    }
+    form {
+      width: 218px;
+      padding: 0 0 25px;
+      margin: 0 0 20px;
+      dl {
+        padding: 0 0 5px;
+        margin: 0 0 26px;
+      }
+      dt,
+      dd {
+        width: 100%;
+      }
+      dt {
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 1;
+
+        height: auto;
+        height: 15px;
+        margin: 0 0 10px;
+      }
+      dd {
+        margin: 0 0 20px;
+      }
+      .price {
+        margin: 0 0 20px;
+        .price-old {
+          display: none;
+        }
+        .price-normal {
+          font-size: 36px;
+
+          width: 100%;
+
+          color: #272727;
+        }
+      }
+      button {
+        width: 100%;
+      }
+    }
+    .description {
+      padding: 0 0 25px;
+      .full-title {
+        font-size: 18px;
+      }
+      .product-id {
+        font-size: 16px;
+
+        margin: 0 0 21px;
+      }
+      p {
+        margin: 0 0 25px;
+      }
+      .show-additional {
+        display: block;
+      }
+      .additional-descr {
+        display: none;
+      }
+    }
+    .share-block {
+      padding: 0;
+      width: 218px;
+      h6 {
+        display: none;
+      }
+    }
+  }
+  .relative {
+    li {
+      span {
+        padding: 40px 40px 0;
+
+        background-color: #8c8c8c;
+      }
+      h4 {
+        font-size: 21px;
+
+        margin: 0 auto 20px;
+      }
+      a {
+        font-size: 12px;
+
+        width: 100%;
+
+        background-color: #e8e8e8;
+      }
+    }
+  }
+}
+@media (min-width: 320px) and (max-width: 767px) {
+  header,
+  section {
+    width: 100%;
+    min-width: 320px;
+
+    background-color: red;
+  }
+  header {
+    height: 63px;
+    h1 {
+      font-size: 24px;
+      font-weight: normal;
+      left: 20px;
+      top: 22px;
+    }
+  }
+  section {
+    padding: 0 20px;
+  }
+  .product {
+    .feature-img {
+      width: 100%;
+    }
+  }
+}
