@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".relative").slick({dots:!1,infinite:!0,speed:300,slidesToShow:3,slidesToScroll:3,responsive:[{breakpoint:767,settings:{dots:!1,infinite:!0,slidesToShow:1,slidesToScroll:1,adaptiveHeight:!0,mobileFirst:!0,arrows:!0}}]})});

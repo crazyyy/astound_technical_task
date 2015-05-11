@@ -12,14 +12,11 @@
   <!-- css + javascript -->
   <link rel="stylesheet" href="style.css" media="all">
 
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
-
   <!--[if lt IE 9]>
   <script src="js/html5shiv.min.js"></script>
   <script src="js/respond.min.js"></script>
   <script src="js/selectivizr.min.js"></script>
-
-  <!-- <![endif] -->
+  <!--<![endif] -->
 
   <script type="text/javascript" src="///cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
@@ -47,7 +44,7 @@
             </dt>
             <dd>
               <fieldset class="select-color">
-                <ul>
+                <ul id="select-color-cont">
                   <li class="color-grey color-active"></li>
                   <li class="color-blue"></li>
                   <li class="color-violet"></li>
@@ -124,24 +121,30 @@
       </article>
       <!-- ./product -->
 
-<div class="relative">
-  <div class="slick-container"><img src="img/content/rel-1.jpg" alt="">
-<span>
+      <div class="relative">
+        <div class="slick-container">
+          <img src="img/content/rel-1.jpg" alt="">
+          <span>
+            <h4>Our iconic blazer</h4>
+            <a target="_blank" rel="nofollow" href="#">read the story</a>
+            </span>
+        </div>
+        <div class="slick-container">
+          <img src="img/content/rel-2.jpg" alt="">
+          <span>
             <h4>Our iconic blazer</h4>
           <a target="_blank" rel="nofollow" href="#">read the story</a>
-</span>
-</div>
-  <div class="slick-container"><img src="img/content/rel-2.jpg" alt="">
-<span>
+          </span>
+        </div>
+        <div class="slick-container">
+          <img src="img/content/rel-3.jpg" alt="">
+          <span>
             <h4>Our iconic blazer</h4>
           <a target="_blank" rel="nofollow" href="#">read the story</a>
-</span></div>
-  <div class="slick-container"><img src="img/content/rel-3.jpg" alt="">
-<span>
-            <h4>Our iconic blazer</h4>
-          <a target="_blank" rel="nofollow" href="#">read the story</a>
-</span></div>
-</div><!-- /.relative -->
+          </span>
+        </div>
+      </div>
+      <!-- /.relative -->
 
 
     </section>
@@ -151,53 +154,57 @@
   </div>
   <!-- /wrapper -->
 
-<script>
-function toggle_visibility() {
-   var e = document.getElementById('additional-descr'),
-    d = document.getElementById('toggle_button');
-   if(e.style.display == 'block') {
+  <script>
+    function toggle_visibility() {
+      var e = document.getElementById('additional-descr'),
+        d = document.getElementById('toggle_button');
+      if (e.style.display == 'block') {
         d.className = "show-additional";
-      e.style.display = 'none';
-    } else {
-      e.style.display = 'block';
-      d.className = "show-additional show-additional-show";
-    }
+        e.style.display = 'none';
+      } else {
+        e.style.display = 'block';
+        d.className = "show-additional show-additional-show";
+      }
+    };
 
+    function set_margin() {
+      var f = document.getElementById('select-color-cont'),
+      gB = f.offsetWidth,
+      nodes = f.childNodes;
+      g = gB - 1;
+      if (g > 193 && gB != 218) {
+        j = 100 * 43 / g;
+        j = j * 4;
+        k = 100 - j;
+        k = k / 3;
+        for(var i=0; i<nodes.length; i++) {
+            if (nodes[i].nodeName.toLowerCase() == 'li') {
+                 nodes[i].style.marginRight  = k + '%';
+             }
+        }
+        document.getElementById('select-color-cont').getElementsByTagName('li')[0,1,2].style.marginRight  = k + '%';
+      }
+    };
+    document.addEventListener("DOMContentLoaded", set_margin);
+  </script>
+
+<script>
+if (screen && screen.width > 769) {
+  console.log('if small screen - load jquery slider');
+  document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-1.11.0.min.js"><\/script>');
+  document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-migrate-1.2.1.min.js"><\/script>');
+  document.write('<script type="text/javascript" src="\/\/cdn.jsdelivr.net\/jquery.slick\/1.5.0\/slick.min.js"><\/script>');
+  document.write('<script type="text/javascript" src="js\/scripts.js"><\/script>');
 }
 </script>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
+<!--   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>
+ -->
+  <script>
 
-<script>
-  $(document).ready(function(){
-    $('.relative').slick({
-      dots: false,
-      infinite: true,
-      speed: 300,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      responsive: [
-        {
-          breakpoint: 767,
-          settings: {
-            dots: false,
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            adaptiveHeight: true,
-            mobileFirst: true,
-            arrows: true
-          }
-        }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
-      ]
-    });
-  });
-</script>
+  </script>
 
 
 

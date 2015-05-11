@@ -13,7 +13,7 @@ $color_a: #323232;
 $color_red: #f3546a;
 /* bordercolor */
 $bdc: #e6e6e6;
-$trs: all 5s;
+$trs: all 1s;
 /* wide sand short block */
 $block-wd: 66.22%;
 $block-st: 30.5%;
@@ -66,8 +66,6 @@ header {
     text-transform: uppercase;
   }
 }
-
-
 section {
   width: $width;
   margin: 0 auto;
@@ -239,7 +237,7 @@ section {
     float: left;
 
     width: $block-wd;
-    padding: 0 0 55px;
+    padding: 0 0 70px;
     .full-title {
       font-size: 21px;
       font-weight: bold;
@@ -380,9 +378,6 @@ section {
     display: inline-block;
     float: left;
     overflow: hidden;
-
-    width: 30.69% !important;
-    margin: 0 1.6% !important;
     span {
       position: absolute;
       z-index: 1;
@@ -464,5 +459,182 @@ section {
     }
   }
 }
+
+
 @import 'media.scss';
 
+@media (min-width: 320px) and (max-width: 767px) {
+  header,
+  section {
+    width: 100%;
+    min-width: 320px;
+  }
+  header {
+    height: 63px;
+    h1 {
+      font-size: 24px;
+      font-weight: normal;
+
+      top: 22px;
+      left: 20px;
+    }
+  }
+  section {
+    padding: 0 20px;
+  }
+  .product {
+    .feature-img {
+      width: 100%;
+    }
+    form {
+      width: 100%;
+      margin: 0 0 25px;
+      padding: 0 0 25px;
+      dl {
+        margin: 0 0 25px;
+        padding: 0;
+      }
+      dt,
+      dd {
+        display: inline-block;
+
+        height: 43px;
+        margin: 0 0 25px;
+      }
+      dt {
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 3.3;
+
+        width: 30%;
+      }
+      dd {
+        width: 70%;
+      }
+      .select-color {
+        width: 100%;
+        min-width: 195px;
+        ul {
+          display: block;
+          overflow: hidden;
+
+          width: 100%;
+          height: 43px;
+
+          background-color: red;
+        }
+        li {
+          display: inline-block;
+          float: left;
+
+          width: 43px;
+          height: 43px;
+          margin: 0;
+          margin: 0 2% 0 0;
+
+          cursor: pointer;
+          text-align: justify;
+
+          border: 2px solid transparent;
+          &:first-child {
+            margin-right: 2%;
+            margin-left: 0;
+          }
+          &:last-child {
+            margin: 0 !important;
+          }
+          &:hover {
+            border-color: lighten(#d2d2d2, 15%);
+          }
+        }
+      }
+      .price {
+        margin: 0 0 25px;
+        .price-old {
+          display: none;
+        }
+        .price-normal {
+          font-size: 36px;
+
+          width: 100%;
+
+          color: #272727;
+        }
+      }
+      button {
+        width: 100%;
+        padding: 17px 0 16px;
+      }
+    }
+    .description {
+      width: 100%;
+      margin: 0 0 15px;
+      padding: 0 0 10px;
+
+      border-bottom: 1px solid $bdc;
+      .full-title {
+        font-size: 18px;
+      }
+      .product-id {
+        font-size: 16px;
+
+        margin: 0 0 15px;
+      }
+      p {
+        margin: 0 0 12px;
+        padding: 0;
+      }
+      .show-additional {
+        display: none;
+      }
+      .additional-descr {
+        display: block;
+      }
+    }
+    .share-block {
+      width: 100%;
+      margin: 0 0 22px;
+      padding: 0;
+      h6 {
+        display: none;
+      }
+      ul {
+        width: 190px;
+        margin: 0 auto;
+        li {
+          margin: 0 9px;
+        }
+      }
+    }
+  }
+  .relative {
+    padding: 0 0 50px;
+    .slick-container {
+      position: relative;
+      span {
+        padding: 40px 40px 0;
+
+        background-color: #8c8c8c;
+      }
+      h4 {
+        font-size: 21px;
+
+        margin: 0 auto 20px;
+      }
+      a {
+        font-size: 12px;
+
+        width: 100%;
+
+        background-color: #e8e8e8;
+      }
+    }
+    .slick-prev,
+    .slick-next {
+    }
+    .slick-next {
+    }
+    .slick-prev {
+    }
+  }
+}
