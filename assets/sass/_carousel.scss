@@ -1,970 +1,385 @@
-/* my slider was designed for an image background (optional) */
-
-html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-
-  background: #fff;
-}
-
-/* project unique slide graphics settings, completely whatever you want them to be (optional) */
-
-.slide-gfx img {
-  max-width: 600px;
-  max-height: auto;
-
-  border-radius: 20px;
-  box-shadow: 0 0 80px rgba(255, 255, 255, 1);
-}
-
-/* mask the overflowing content, this will prevent scrollbars (optional) */
-
-.css-slider-mask {
-  display: block;
-  overflow: hidden;
-
-  width: 100%;
-  height: 100%;
-}
-
-/* base style for the slider, you can place or size as you like (optional) */
-
-.css-slider {
-  position: relative;
-  z-index: 1;
-
-  display: none;
-  display: none;
-
-  width: 96%;
-  height: 100%;
-  margin: 0;
-  margin-left: 2%;
-  padding: 0;
-
-  list-style: none;
-}
-
-/* inital trick to hide the slider from everyone */
-
-/* ... then a simple hack to only show for browsers that support :nth-child */
-
-body:nth-child(2) .css-slider {
-  display: block;
-}
-
-/* style the slides */
-
-.css-slider .slide {
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 40px;
-
-  display: block;
-
-  padding-right: 40px;
-  padding-left: 0;
-
-  -webkit-transition-timing-function: ease;
-     -moz-transition-timing-function: ease;
-      -ms-transition-timing-function: ease;
-       -o-transition-timing-function: ease;
-          transition-timing-function: ease;
-  -webkit-transition-duration: 1s;
-     -moz-transition-duration: 1s;
-      -ms-transition-duration: 1s;
-       -o-transition-duration: 1s;
-          transition-duration: 1s;
-  -webkit-transition-property: left, padding-left;
-     -moz-transition-property: left, padding-left;
-      -ms-transition-property: left, padding-left;
-       -o-transition-property: left, padding-left;
-          transition-property: left, padding-left;
-
-  outline: 0;
-  /* kill the focus rect! */
-  background: url('http://www.codelamp.co.uk/css-slideshow/v0.2/slideshow/arrow-right.svg') no-repeat right center;
-  background-size: 25px auto;
-  &:hover {
-    cursor: pointer;
-
-    background-image: url('http://www.codelamp.co.uk/css-slideshow/v0.2/slideshow/arrow-right-hover.svg');
+.gallery {
+  .control-operator:target ~ .controls .control-button {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
   }
-  &:target,
-  &:focus,
-  &:last-child {
-    z-index: 101;
-    right: 40px;
-    left: 40px;
-
-    padding-right: 0;
-    padding-left: 0;
-
-    cursor: default;
-
-    background: transparent;
-    &:hover {
-      z-index: 101;
-      right: 40px;
-      left: 40px;
-
-      padding-right: 0;
-      padding-left: 0;
-
-      cursor: default;
-
-      background: transparent;
+  .control-button:first-of-type {
+    color: white;
+    color: rgba(255, 255, 255, .8);
+  }
+  .control-operator {
+    &:nth-of-type(1):target ~ .controls .control-button:nth-of-type(1),
+    &:nth-of-type(2):target ~ .controls .control-button:nth-of-type(2),
+    &:nth-of-type(3):target ~ .controls .control-button:nth-of-type(3),
+    &:nth-of-type(4):target ~ .controls .control-button:nth-of-type(4),
+    &:nth-of-type(5):target ~ .controls .control-button:nth-of-type(5) {
+      color: white;
+      color: rgba(255, 255, 255, .8);
     }
   }
-  &:target ~ .slide,
-  &:focus ~ .slide {
-    right: 40px;
+  .item {
+    position: absolute;
+    top: 0;
     left: 0;
-
-    padding-right: 0;
-    padding-left: 40px;
-  }
-  &:target ~ .slide,
-  &:focus ~ .slide {
-    background: url('http://www.codelamp.co.uk/css-slideshow/v0.2/slideshow/arrow-left.svg') no-repeat left center;
-    background-size: 25px auto;
-  }
-  &:target ~ .slide:hover,
-  &:focus ~ .slide:hover {
-    background-image: url('http://www.codelamp.co.uk/css-slideshow/v0.2/slideshow/arrow-left-hover.svg');
-  }
-  .slide-outer {
-    display: none;
 
     width: 100%;
     height: 100%;
-    .slide-inner {
-      display: table-cell;
 
-      width: 100%;
-      height: 100%;
+    transition: opacity .5s;
+    pointer-events: none;
 
-      text-align: center;
-      vertical-align: middle;
-      .slide-gfx {
-        position: relative;
+    opacity: 0;
+    &:first-of-type {
+      position: static;
 
-        display: inline-block;
+      pointer-events: auto;
+
+      opacity: 1;
+    }
+  }
+  .control-operator {
+    display: none;
+    &:target ~ {
+      .item {
+        animation: none;
+        pointer-events: none;
+
+        opacity: 0;
+      }
+      .controls .control-button {
+        animation: none;
       }
     }
-  }
-  &:target .slide-outer,
-  &:focus .slide-outer,
-  &:last-child .slide-outer {
-    display: block;
-    /* if they don't support display table */
-    display: table;
-  }
-  &:target ~ .slide:last-child,
-  &:focus ~ .slide:last-child {
-    cursor: pointer;
-  }
-  &:target ~ .slide:last-child .slide-outer,
-  &:focus ~ .slide:last-child .slide-outer {
-    display: none;
-  }
-  .slide-outer .slide-gfx {
-    z-index: 102;
+    &:nth-of-type(1):target ~ .item:nth-of-type(1),
+    &:nth-of-type(2):target ~ .item:nth-of-type(2) {
+      pointer-events: auto;
 
-    text-align: left;
-    /* override the centering back to defaults */
-  }
-  &:target ~ .slide:nth-child(1),
-  &:focus ~ .slide:nth-child(1) {
-    z-index: 99;
-  }
-  &:target ~ .slide:nth-child(2),
-  &:focus ~ .slide:nth-child(2) {
-    z-index: 98;
-  }
-  &:target ~ .slide:nth-child(3),
-  &:focus ~ .slide:nth-child(3) {
-    z-index: 97;
-  }
-  &:target ~ .slide:nth-child(4),
-  &:focus ~ .slide:nth-child(4) {
-    z-index: 96;
-  }
-  &:target ~ .slide:nth-child(5),
-  &:focus ~ .slide:nth-child(5) {
-    z-index: 95;
-  }
-  &:target ~ .slide:nth-child(6),
-  &:focus ~ .slide:nth-child(6) {
-    z-index: 94;
-  }
-  &:target ~ .slide:nth-child(7),
-  &:focus ~ .slide:nth-child(7) {
-    z-index: 93;
-  }
-  &:target ~ .slide:nth-child(8),
-  &:focus ~ .slide:nth-child(8) {
-    z-index: 92;
-  }
-  &:target ~ .slide:nth-child(9),
-  &:focus ~ .slide:nth-child(9) {
-    z-index: 91;
-  }
-  &:target ~ .slide:nth-child(10),
-  &:focus ~ .slide:nth-child(10) {
-    z-index: 90;
-  }
-  &:target ~ .slide:nth-child(11),
-  &:focus ~ .slide:nth-child(11) {
-    z-index: 89;
-  }
-  &:target ~ .slide:nth-child(12),
-  &:focus ~ .slide:nth-child(12) {
-    z-index: 88;
-  }
-  &:target ~ .slide:nth-child(13),
-  &:focus ~ .slide:nth-child(13) {
-    z-index: 87;
-  }
-  &:target ~ .slide:nth-child(14),
-  &:focus ~ .slide:nth-child(14) {
-    z-index: 86;
-  }
-  &:target ~ .slide:nth-child(15),
-  &:focus ~ .slide:nth-child(15) {
-    z-index: 85;
-  }
-  &:target ~ .slide:nth-child(16),
-  &:focus ~ .slide:nth-child(16) {
-    z-index: 84;
-  }
-  &:target ~ .slide:nth-child(17),
-  &:focus ~ .slide:nth-child(17) {
-    z-index: 83;
-  }
-  &:target ~ .slide:nth-child(18),
-  &:focus ~ .slide:nth-child(18) {
-    z-index: 82;
-  }
-  &:target ~ .slide:nth-child(19),
-  &:focus ~ .slide:nth-child(19) {
-    z-index: 81;
-  }
-  &:target ~ .slide:nth-child(20),
-  &:focus ~ .slide:nth-child(20) {
-    z-index: 80;
-  }
-  .slide-outer {
-    display: block !important;
-    display: table !important;
-
-    -webkit-transition-timing-function: ease;
-       -moz-transition-timing-function: ease;
-        -ms-transition-timing-function: ease;
-         -o-transition-timing-function: ease;
-            transition-timing-function: ease;
-    -webkit-transition-duration: 2s;
-       -moz-transition-duration: 2s;
-        -ms-transition-duration: 2s;
-         -o-transition-duration: 2s;
-            transition-duration: 2s;
-    -webkit-transition-property: opacity, -wekbit-transform;
-       -moz-transition-property: opacity, -moz-transform;
-        -ms-transition-property: opacity, -ms-transform;
-         -o-transition-property: opacity, -o-transform;
-            transition-property: opacity, transform;
-  }
-  &:target ~ .slide {
-    .slide-outer,
-    &:last-child .slide-outer {
-      -webkit-transform: translate(-150%, 0);
-      -webkit-transform: translate3D(-150%, 0, 0);
-         -moz-transform: translate(-150%, 0);
-         -moz-transform: translate3D(-150%, 0, 0);
-          -ms-transform: translate(-150%, 0);
-          -ms-transform: translate3D(-150%, 0, 0);
-           -o-transform: translate(-150%, 0);
-           -o-transform: translate3D(-150%, 0, 0);
-              transform: translate(-150%, 0);
-              transform: translate3D(-150%, 0, 0);
+      opacity: 1;
     }
   }
-  &:focus ~ .slide {
-    .slide-outer,
-    &:last-child .slide-outer {
-      -webkit-transform: translate(-150%, 0);
-      -webkit-transform: translate3D(-150%, 0, 0);
-         -moz-transform: translate(-150%, 0);
-         -moz-transform: translate3D(-150%, 0, 0);
-          -ms-transform: translate(-150%, 0);
-          -ms-transform: translate3D(-150%, 0, 0);
-           -o-transform: translate(-150%, 0);
-           -o-transform: translate3D(-150%, 0, 0);
-              transform: translate(-150%, 0);
-              transform: translate3D(-150%, 0, 0);
-    }
+}
+
+@keyframes controlAnimation-2 {
+  0% {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
   }
-  .slide-outer {
-    -webkit-transform: translate(200%, 0);
-    -webkit-transform: translate3D(200%, 0, 0);
-       -moz-transform: translate(200%, 0);
-       -moz-transform: translate3D(200%, 0, 0);
-        -ms-transform: translate(200%, 0);
-        -ms-transform: translate3D(200%, 0, 0);
-         -o-transform: translate(200%, 0);
-         -o-transform: translate3D(200%, 0, 0);
-            transform: translate(200%, 0);
-            transform: translate3D(200%, 0, 0);
+
+  14.3%,
+  50% {
+    color: white;
+    color: rgba(255, 255, 255, .8);
   }
-  &:target .slide-outer,
-  &:focus .slide-outer,
-  &:last-child .slide-outer {
-    -webkit-transform: translate(0, 0);
-    -webkit-transform: translate3D(0, 0, 0);
-       -moz-transform: translate(0, 0);
-       -moz-transform: translate3D(0, 0, 0);
-        -ms-transform: translate(0, 0);
-        -ms-transform: translate3D(0, 0, 0);
-         -o-transform: translate(0, 0);
-         -o-transform: translate3D(0, 0, 0);
-            transform: translate(0, 0);
-            transform: translate3D(0, 0, 0);
+
+  64.3%,
+  100% {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
   }
 }
 
-/* style the forward arrow */
 
-/* style the forward arrow hover state */
-
-/* reveal the focused slide, including last child for when there is no focus */
-
-/* affect slides that have been navigated past the current */
-
-/* style the previous arrow */
-
-/* style the previous arrow hover state */
-
-/* by default hide all slide contents, if animation is removed
-   this is required to snap slides on or off */
-
-/* slide-inner is purely used for centering of the slide,
-   using the table vertical center method. */
-
-/* a wrapper that holds whatever you wish to put in your slide,
-   needs inline-block to center properly */
-
-/* for the focused or last child, show the slide contents */
-
-/* override the last-child slide if a slide has been focused */
-
-/* override the last-child slide contents if a slide has been focused */
-
-/* make sure the slide graphics appear above everything else */
-
-/* annoyingly the only "required" arbitrary part of the css --
-   the following means the back arrow is supported for
-   up to 20 slides. If you need more, just extend.
-   This could be fixed if there was a selector like "~"
-   or "+" which would work backwards through siblings.
-   */
-
-/** --------------------------------------------------------------------------
- * HANDLE THE SLIDE ANIMATION (optional)
- * ------------------------------------------------------------------------ */
-
-/* Override the default instant slide behaviour */
-
-/* set up the transitions */
-
-/* After state */
-
-/* Before state */
-
-/* Focused state*/
-
-/** --------------------------------------------------------------------------
- * SMALL SCREEN FIX / SLIDE JERK (optional)
- * ---------------------------------------------------------------------------
- * When we shift 'left' and 'right' values -- in order to allow access to a future
- * or past arrow -- this can cause a jump in the responsive scaling of the slide.
- * if we transition the left value quickly, it can make this appear less jarring.
- */
-
-/** --------------------------------------------------------------------------
- * Add-on module : responsive images
- * ------------------------------------------------------------------------ */
-
-.with-responsive-images .slide-gfx img {
-  width: 100%;
-  height: auto;
-}
-
-/** --------------------------------------------------------------------------
- * Add-on module : stop user selection
- * ------------------------------------------------------------------------ */
-
-/* if your slides don't need to be selectable, I recommend using this */
-
-.with-selection-disabled {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-/** --------------------------------------------------------------------------
- * Add-on module : initial fade in
- * ------------------------------------------------------------------------ */
-
-.with-fade-in .slide-gfx {
-  -webkit-animation: css-slideshow-fade-in 2s;
-     -moz-animation: css-slideshow-fade-in 2s;
-      -ms-animation: css-slideshow-fade-in 2s;
-       -o-animation: css-slideshow-fade-in 2s;
-          animation: css-slideshow-fade-in 2s;
-  -moz-animation-delay: 1s;
-   -ms-animation-delay: 1s;
-    -o-animation-delay: 1s;
-       animation-delay: 1s;
-
-  opacity: 0;
-
-  -wekbit-animation-delay: 1s;
-  -webkit-animation-fill-mode: forwards;
-     -moz-animation-fill-mode: forwards;
-      -ms-animation-fill-mode: forwards;
-       -o-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-
-/* animate into visibility */
-
-/* Vebdor animations */
-@-webkit-keyframes css-slideshow-fade-in {
-  from {
+@keyframes galleryAnimation-2 {
+  0% {
     opacity: 0;
   }
 
-  to {
+  14.3%,
+  50% {
+    opacity: 1;
+  }
+
+  64.3%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.items-2 {
+  &.autoplay {
+    .control-button {
+      animation: controlAnimation-2 14s infinite;
+    }
+    .item {
+      animation: galleryAnimation-2 14s infinite;
+    }
+  }
+  .control-button:nth-of-type(1),
+  .item:nth-of-type(1) {
+    animation-delay: -2s;
+  }
+  .control-button:nth-of-type(2),
+  .item:nth-of-type(2) {
+    animation-delay: 5s;
+  }
+}
+
+@keyframes controlAnimation-3 {
+  0% {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
+  }
+
+  9.5%,
+  33.3% {
+    color: white;
+    color: rgba(255, 255, 255, .8);
+  }
+
+  42.9%,
+  100% {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
+  }
+}
+
+
+@keyframes galleryAnimation-3 {
+  0% {
+    opacity: 0;
+  }
+
+  9.5%,
+  33.3% {
+    opacity: 1;
+  }
+
+  42.9%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.gallery .control-operator {
+  &:nth-of-type(1):target ~ .item:nth-of-type(1),
+  &:nth-of-type(2):target ~ .item:nth-of-type(2),
+  &:nth-of-type(3):target ~ .item:nth-of-type(3) {
+    pointer-events: auto;
+
     opacity: 1;
   }
 }
 
+.items-3 {
+  &.autoplay {
+    .control-button {
+      animation: controlAnimation-3 21s infinite;
+    }
+    .item {
+      animation: galleryAnimation-3 21s infinite;
+    }
+  }
+  .control-button:nth-of-type(1),
+  .item:nth-of-type(1) {
+    animation-delay: -2s;
+  }
+  .control-button:nth-of-type(2),
+  .item:nth-of-type(2) {
+    animation-delay: 5s;
+  }
+  .control-button:nth-of-type(3),
+  .item:nth-of-type(3) {
+    animation-delay: 12s;
+  }
+}
 
-@-moz-keyframes css-slideshow-fade-in {
-  from {
+@keyframes controlAnimation-4 {
+  0% {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
+  }
+
+  7.1%,
+  25% {
+    color: white;
+    color: rgba(255, 255, 255, .8);
+  }
+
+  32.1%,
+  100% {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
+  }
+}
+
+
+@keyframes galleryAnimation-4 {
+  0% {
     opacity: 0;
   }
 
-  to {
+  7.1%,
+  25% {
+    opacity: 1;
+  }
+
+  32.1%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.gallery .control-operator {
+  &:nth-of-type(1):target ~ .item:nth-of-type(1),
+  &:nth-of-type(2):target ~ .item:nth-of-type(2),
+  &:nth-of-type(3):target ~ .item:nth-of-type(3),
+  &:nth-of-type(4):target ~ .item:nth-of-type(4) {
+    pointer-events: auto;
+
     opacity: 1;
   }
 }
 
+.items-4 {
+  &.autoplay {
+    .control-button {
+      animation: controlAnimation-4 28s infinite;
+    }
+    .item {
+      animation: galleryAnimation-4 28s infinite;
+    }
+  }
+  .control-button:nth-of-type(1),
+  .item:nth-of-type(1) {
+    animation-delay: -2s;
+  }
+  .control-button:nth-of-type(2),
+  .item:nth-of-type(2) {
+    animation-delay: 5s;
+  }
+  .control-button:nth-of-type(3),
+  .item:nth-of-type(3) {
+    animation-delay: 12s;
+  }
+  .control-button:nth-of-type(4),
+  .item:nth-of-type(4) {
+    animation-delay: 19s;
+  }
+}
 
-@-ms-keyframes css-slideshow-fade-in {
-  from {
+@keyframes controlAnimation-5 {
+  0% {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
+  }
+
+  5.7%,
+  20% {
+    color: white;
+    color: rgba(255, 255, 255, .8);
+  }
+
+  25.7%,
+  100% {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
+  }
+}
+
+
+@keyframes galleryAnimation-5 {
+  0% {
     opacity: 0;
   }
 
-  to {
+  5.7%,
+  20% {
+    opacity: 1;
+  }
+
+  25.7%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.gallery .control-operator {
+  &:nth-of-type(1):target ~ .item:nth-of-type(1),
+  &:nth-of-type(2):target ~ .item:nth-of-type(2),
+  &:nth-of-type(3):target ~ .item:nth-of-type(3),
+  &:nth-of-type(4):target ~ .item:nth-of-type(4),
+  &:nth-of-type(5):target ~ .item:nth-of-type(5) {
+    pointer-events: auto;
+
     opacity: 1;
   }
 }
 
-
-@-o-keyframes css-slideshow-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-
-@keyframes css-slideshow-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-
-/** --------------------------------------------------------------------------
- * Add-on module : slide reflection
- * ------------------------------------------------------------------------ */
-
-/* force our slide-gfx to be inline-block and relative positioned */
-
-.with-reflection {
-  .slide-gfx {
-    display: inline-block !important;
-    > *:first-child {
-      -webkit-box-reflect: below 2px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.9, transparent), to(white));
+.items-5 {
+  &.autoplay {
+    .control-button {
+      animation: controlAnimation-5 35s infinite;
     }
-    img {
-      display: block;
-    }
-    &:after {
-      position: absolute;
-      z-index: 200;
-      /* fade out reflection */
-      top: 100%;
-
-      display: block;
-
-      width: 100%;
-      height: 60px;
-      margin-top: 2px;
-
-      content: '';
-      /* gradient fade the reflection */
-      transform: scaleY(-1);
-      /* flip clone to appear as reflection */
-
-      opacity: .5;
-
-      mask: url('#mask');
+    .item {
+      animation: galleryAnimation-5 35s infinite;
     }
   }
-
-}
-
-/* reflection for webkit agents */
-
-/* make sure internal images don't keep inline spacing/margin */
-
-/* generate the reflection */
-
-/* again, due to element() requiring IDs we need arbitrarty code per each slide and each slide-gfx needs an id */
-
-/** --------------------------------------------------------------------------
- * Add-on module : slide zoom (optional, not compatible with slide float)
- * ------------------------------------------------------------------------ */
-
-.with-slide-zoom .slide .slide-gfx > *:first-child {
-  -webkit-transition-delay: .25s;
-     -moz-transition-delay: .25s;
-      -ms-transition-delay: .25s;
-       -o-transition-delay: .25s;
-          transition-delay: .25s;
-  -webkit-transition-timing-function: ease-in-out;
-     -moz-transition-timing-function: ease-in-out;
-      -ms-transition-timing-function: ease-in-out;
-       -o-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
-  -webkit-transition-duration: 2s;
-     -moz-transition-duration: 2s;
-      -ms-transition-duration: 2s;
-       -o-transition-duration: 2s;
-          transition-duration: 2s;
-  -webkit-transition-property: max-width;
-     -moz-transition-property: max-width;
-      -ms-transition-property: max-width;
-       -o-transition-property: max-width;
-          transition-property: max-width;
-  &:hover {
-    max-width: 1000px;
+  .control-button:nth-of-type(1),
+  .item:nth-of-type(1) {
+    animation-delay: -2s;
+  }
+  .control-button:nth-of-type(2),
+  .item:nth-of-type(2) {
+    animation-delay: 5s;
+  }
+  .control-button:nth-of-type(3),
+  .item:nth-of-type(3) {
+    animation-delay: 12s;
+  }
+  .control-button:nth-of-type(4),
+  .item:nth-of-type(4) {
+    animation-delay: 19s;
+  }
+  .control-button:nth-of-type(5),
+  .item:nth-of-type(5) {
+    animation-delay: 26s;
   }
 }
 
-/** --------------------------------------------------------------------------
- * Add-on module : slide float (optional, not compatible with slide zoom)
- * ------------------------------------------------------------------------ */
-
-/* inital transition set-up */
-
-.with-slide-float:not(.with-slide-zoom) .slide .slide-gfx > *:first-child,
-.with-slide-float-hover:not(.with-slide-zoom) .slide .slide-gfx > *:first-child {
-  -webkit-transition-timing-function: ease-in-out;
-     -moz-transition-timing-function: ease-in-out;
-      -ms-transition-timing-function: ease-in-out;
-       -o-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
-  -webkit-transition-duration: 2s;
-     -moz-transition-duration: 2s;
-      -ms-transition-duration: 2s;
-       -o-transition-duration: 2s;
-          transition-duration: 2s;
-  -webkit-transition-property: transform;
-     -moz-transition-property: transform;
-      -ms-transition-property: transform;
-       -o-transition-property: transform;
-          transition-property: transform;
-}
-
-/* we need a delay for the non-hover version */
-
-.with-slide-float:not(.with-slide-zoom) .slide {
-  .slide-gfx > *:first-child {
-    -webkit-transition-delay: 2s;
-       -moz-transition-delay: 2s;
-        -ms-transition-delay: 2s;
-         -o-transition-delay: 2s;
-            transition-delay: 2s;
-  }
-  &:target .slide-gfx > *:first-child,
-  &:focus .slide-gfx > *:first-child {
-    -webkit-transform: translate(0, -40px);
-    -webkit-transform: translate3D(0, -40px, 0);
-       -moz-transform: translate(0, -40px);
-       -moz-transform: translate3D(0, -40px, 0);
-        -ms-transform: translate(0, -40px);
-        -ms-transform: translate3D(0, -40px, 0);
-         -o-transform: translate(0, -40px);
-         -o-transform: translate3D(0, -40px, 0);
-            transform: translate(0, -40px);
-            transform: translate3D(0, -40px, 0);
-  }
-}
-
-/* initial levitation on focus */
-
-.with-slide-float-hover:not(.with-slide-zoom) .slide .slide-gfx > *:first-child:hover {
-  -webkit-transform: translate(0, -40px);
-  -webkit-transform: translate3D(0, -40px, 0);
-     -moz-transform: translate(0, -40px);
-     -moz-transform: translate3D(0, -40px, 0);
-      -ms-transform: translate(0, -40px);
-      -ms-transform: translate3D(0, -40px, 0);
-       -o-transform: translate(0, -40px);
-       -o-transform: translate3D(0, -40px, 0);
-          transform: translate(0, -40px);
-          transform: translate3D(0, -40px, 0);
-}
-
-/* trigger the float animation after 4s */
-
-.with-slide-float:not(.with-slide-zoom) .slide {
-  &:target .slide-gfx > *:first-child,
-  &:focus .slide-gfx > *:first-child {
-    -webkit-animation: css-slideshow-levitate 4s;
-       -moz-animation: css-slideshow-levitate 4s;
-        -ms-animation: css-slideshow-levitate 4s;
-         -o-animation: css-slideshow-levitate 4s;
-            animation: css-slideshow-levitate 4s;
-    -webkit-animation-timing-function: ease-in-out;
-       -moz-animation-timing-function: ease-in-out;
-        -ms-animation-timing-function: ease-in-out;
-         -o-animation-timing-function: ease-in-out;
-            animation-timing-function: ease-in-out;
-    -moz-animation-delay: 2s;
-     -ms-animation-delay: 2s;
-      -o-animation-delay: 2s;
-         animation-delay: 2s;
-    -webkit-animation-iteration-count: infinite;
-       -moz-animation-iteration-count: infinite;
-        -ms-animation-iteration-count: infinite;
-         -o-animation-iteration-count: infinite;
-    -moz-animation-direction: alternate;
-     -ms-animation-direction: alternate;
-      -o-animation-direction: alternate;
-         animation-direction: alternate;
-
-    -wekbit-animation-direction: alternate;
-    animation-fill-iteration-count: infinite;
-    -wekbit-animation-delay: 2s;
-  }
-}
-
-.with-slide-float-hover:not(.with-slide-zoom) .slide .slide-gfx > *:first-child:hover {
-  -webkit-animation: css-slideshow-levitate 4s;
-     -moz-animation: css-slideshow-levitate 4s;
-      -ms-animation: css-slideshow-levitate 4s;
-       -o-animation: css-slideshow-levitate 4s;
-          animation: css-slideshow-levitate 4s;
-  -webkit-animation-timing-function: ease-in-out;
-     -moz-animation-timing-function: ease-in-out;
-      -ms-animation-timing-function: ease-in-out;
-       -o-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-  -moz-animation-delay: 2s;
-   -ms-animation-delay: 2s;
-    -o-animation-delay: 2s;
-       animation-delay: 2s;
-  -webkit-animation-iteration-count: infinite;
-     -moz-animation-iteration-count: infinite;
-      -ms-animation-iteration-count: infinite;
-       -o-animation-iteration-count: infinite;
-  -moz-animation-direction: alternate;
-   -ms-animation-direction: alternate;
-    -o-animation-direction: alternate;
-       animation-direction: alternate;
-
-  -wekbit-animation-direction: alternate;
-  animation-fill-iteration-count: infinite;
-  -wekbit-animation-delay: 2s;
-}
-
-/* longer delay for automatic version i.e. non-hover */
-
-.with-slide-float:not(.with-slide-zoom) .slide {
-  &:target .slide-gfx > *:first-child,
-  &:focus .slide-gfx > *:first-child {
-    -moz-animation-delay: 4s;
-     -ms-animation-delay: 4s;
-      -o-animation-delay: 4s;
-         animation-delay: 4s;
-
-    -wekbit-animation-delay: 4s;
-  }
-}
-
-/* Vebdor animations for the float */
-@-webkit-keyframes css-slideshow-levitate {
-  from {
-    -webkit-transform: translate(0, -40px);
-    -webkit-transform: translate3D(0, -40px, 0);
-  }
-
-  to {
-    -webkit-transform: translate(0, -20px);
-    -webkit-transform: translate3D(0, -20px, 0);
-  }
-}
-
-
-@-moz-keyframes css-slideshow-levitate {
-  from {
-    -moz-transform: translate(0, -40px);
-    -moz-transform: translate3D(0, -40px, 0);
-  }
-
-  to {
-    -moz-transform: translate(0, -20px);
-    -moz-transform: translate3D(0, -20px, 0);
-  }
-}
-
-
-@-ms-keyframes css-slideshow-levitate {
-  from {
-    -ms-transform: translate(0, -40px);
-    -ms-transform: translate3D(0, -40px, 0);
-  }
-
-  to {
-    -ms-transform: translate(0, -20px);
-    -ms-transform: translate3D(0, -20px, 0);
-  }
-}
-
-
-@-o-keyframes css-slideshow-levitate {
-  from {
-    -o-transform: translate(0, -40px);
-    -o-transform: translate3D(0, -40px, 0);
-  }
-
-  to {
-    -o-transform: translate(0, -20px);
-    -o-transform: translate3D(0, -20px, 0);
-  }
-}
-
-
-@keyframes css-slideshow-levitate {
-  from {
-    transform: translate(0, -40px);
-    transform: translate3D(0, -40px, 0);
-  }
-
-  to {
-    transform: translate(0, -20px);
-    transform: translate3D(0, -20px, 0);
-  }
-}
-
-
-/** --------------------------------------------------------------------------
- * Add-on module : ground shadow (optional)
- * ------------------------------------------------------------------------ */
-
-.with-shadow .slide .slide-gfx:before {
-  position: absolute;
-  z-index: -1;
-  right: -20px;
-  bottom: -10px;
-  left: -20px;
-
-  height: 20px;
-  /* display: none; ~ enable if you only want to show for IE9,10,11 */
-
-  content: '';
-
-  opacity: .7;
-  background: url('http://www.codelamp.co.uk/css-slideshow/v0.2/slideshow/slide-shadow.svg') no-repeat center center;
-}
-
-.ms9 .with-shadow .slide .slide-gfx:before,
-.ms10 .with-shadow .slide .slide-gfx:before,
-.ms11 .with-shadow .slide .slide-gfx:before {
-  display: block !important;
-}
-
-.with-shadow {
-  &.with-slide-float .slide .slide-gfx:before,
-  &.with-slide-float-hover .slide .slide-gfx:before {
-    -webkit-transition-timing-function: ease-in-out;
-       -moz-transition-timing-function: ease-in-out;
-        -ms-transition-timing-function: ease-in-out;
-         -o-transition-timing-function: ease-in-out;
-            transition-timing-function: ease-in-out;
-    -webkit-transition-duration: 2s;
-       -moz-transition-duration: 2s;
-        -ms-transition-duration: 2s;
-         -o-transition-duration: 2s;
-            transition-duration: 2s;
-    -webkit-transition-property: opacity;
-       -moz-transition-property: opacity;
-        -ms-transition-property: opacity;
-         -o-transition-property: opacity;
-            transition-property: opacity;
-  }
-  &.with-slide-float .slide {
-    .slide-gfx:before {
-      -webkit-transition-delay: 2s;
-         -moz-transition-delay: 2s;
-          -ms-transition-delay: 2s;
-           -o-transition-delay: 2s;
-              transition-delay: 2s;
-    }
-    &:target .slide-gfx:before,
-    &:focus .slide-gfx:before,
-    &:last-child .slide-gfx:before {
-      -webkit-animation: css-slideshow-shadow 4s;
-         -moz-animation: css-slideshow-shadow 4s;
-          -ms-animation: css-slideshow-shadow 4s;
-           -o-animation: css-slideshow-shadow 4s;
-              animation: css-slideshow-shadow 4s;
-      -webkit-animation-timing-function: ease-in-out;
-         -moz-animation-timing-function: ease-in-out;
-          -ms-animation-timing-function: ease-in-out;
-           -o-animation-timing-function: ease-in-out;
-              animation-timing-function: ease-in-out;
-      -moz-animation-delay: 4s;
-       -ms-animation-delay: 4s;
-        -o-animation-delay: 4s;
-           animation-delay: 4s;
-      -webkit-animation-iteration-count: infinite;
-         -moz-animation-iteration-count: infinite;
-          -ms-animation-iteration-count: infinite;
-           -o-animation-iteration-count: infinite;
-      -moz-animation-direction: alternate;
-       -ms-animation-direction: alternate;
-        -o-animation-direction: alternate;
-           animation-direction: alternate;
-
-      opacity: .1;
-
-      -wekbit-animation-delay: 4s;
-      -wekbit-animation-direction: alternate;
-      animation-fill-iteration-count: infinite;
+.gallery {
+  position: relative;
+  .control-button {
+    color: #ccc;
+    color: rgba(255, 255, 255, .4);
+    &:hover {
+      color: white;
+      color: rgba(255, 255, 255, .8);
     }
   }
-  &.with-slide-float-hover .slide .slide-gfx:hover:before {
-    -webkit-animation: css-slideshow-shadow 4s;
-       -moz-animation: css-slideshow-shadow 4s;
-        -ms-animation: css-slideshow-shadow 4s;
-         -o-animation: css-slideshow-shadow 4s;
-            animation: css-slideshow-shadow 4s;
-    -webkit-animation-timing-function: ease-in-out;
-       -moz-animation-timing-function: ease-in-out;
-        -ms-animation-timing-function: ease-in-out;
-         -o-animation-timing-function: ease-in-out;
-            animation-timing-function: ease-in-out;
-    -moz-animation-delay: 4s;
-    -moz-animation-delay: 2s;
-     -ms-animation-delay: 4s;
-     -ms-animation-delay: 2s;
-      -o-animation-delay: 4s;
-      -o-animation-delay: 2s;
-         animation-delay: 4s;
-         animation-delay: 2s;
-    -webkit-animation-iteration-count: infinite;
-       -moz-animation-iteration-count: infinite;
-        -ms-animation-iteration-count: infinite;
-         -o-animation-iteration-count: infinite;
-    -moz-animation-direction: alternate;
-     -ms-animation-direction: alternate;
-      -o-animation-direction: alternate;
-         animation-direction: alternate;
+  .item {
+    overflow: hidden;
 
-    opacity: .1;
+    height: 400px;
 
-    -wekbit-animation-delay: 4s;
-    -wekbit-animation-direction: alternate;
-    animation-fill-iteration-count: infinite;
-    -wekbit-animation-delay: 2s;
+    text-align: center;
+
+    background: red;
+  }
+  .controls {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+
+    text-align: center;
+  }
+  .control-button {
+    font-size: 3em;
+
+    display: inline-block;
+
+    margin: 0 .02em;
+
+    transition: color .1s;
+    text-align: center;
+    text-decoration: none;
   }
 }
 
-/* Vebdor animations for the float */
-@-webkit-keyframes css-slideshow-shadow {
-  from {
-    opacity: .1;
-  }
-
-  to {
-    opacity: .7;
-  }
-}
-
-
-@-moz-keyframes css-slideshow-shadow {
-  from {
-    opacity: .1;
-  }
-
-  to {
-    opacity: .7;
-  }
-}
-
-
-@-ms-keyframes css-slideshow-shadow {
-  from {
-    opacity: .1;
-  }
-
-  to {
-    opacity: .7;
-  }
-}
-
-
-@-o-keyframes css-slideshow-shadow {
-  from {
-    opacity: .1;
-  }
-
-  to {
-    opacity: .7;
-  }
-}
-
-
-@keyframes css-slideshow-shadow {
-  from {
-    opacity: .1;
-  }
-
-  to {
-    opacity: .7;
-  }
-}
+/*
+  Theme controls how everything looks in Gallery CSS.
+*/
