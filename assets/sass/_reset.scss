@@ -400,7 +400,6 @@ input[type="checkbox"] + label:before {
     top:0.25em;  /* we're moving it slightly down for alignment purposes */
     left:-2px; /* we're moving it slightly to the left */
     width:25px; height:25px; /* the width and height of the fake elements */
-    background-image:url(formelements.png); /* the background image sprite */
 }
 .ie8 {
   label {

@@ -1,32 +1,20 @@
 <!doctype html>
-<!–[if IE 8 ]>
-<html lang="en" class="ie8″> <![endif]–>
-<!–[if IE 9 ]> <html lang=" en " class="ie9″>
-<![endif]–>
-<!–[if (gt IE 9)|!(IE)]>
-<!–>
-<html lang="en">
-<!–<![endif]–>
-
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>astound test task</title>
   <!-- meta -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <!-- icons -->
   <link href="favicon.ico" rel="shortcut icon">
   <!-- css + javascript -->
-  <link rel="stylesheet" href="style.css" media="all">
+  <link rel="stylesheet" href="css/main.css" media="all">
   <!--   [if lt IE 9]> -->
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="js/html5shiv.min.js"></script>
-  <script src="js/respond.min.js"></script>
-  <script src="js/selectivizr.min.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script src="js/ie.js"></script>
   <!--   <![endif] -->
-  <script type="text/javascript" src="///cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
-
+  <script type="text/javascript" src="js/modernizr.min.js"></script>
 </head>
 
 <body>
@@ -52,10 +40,21 @@
             <dd>
               <fieldset class="select-color">
                 <ul id="select-color-cont">
-                  <li class="color-grey color-active"></li>
-                  <li class="color-blue"></li>
-                  <li class="color-violet"></li>
-                  <li class="color-red"></li>
+                  <li class="color-grey color-selected">
+                    <input type="radio" name="grey" value="grey" id="grey" checked>
+                    <label for="grey"></label>
+                  </li>
+                  <li class="color-blue">
+                    <input type="radio" name="blue" value="blue" id="blue"><label for="blue"></label>
+                  </li>
+                  <li class="color-violet">
+                    <input type="radio" name="violet" value="violet" id="violet">
+                    <label for="violet"></label>
+                  </li>
+                  <li class="color-red">
+                    <input type="radio" name="red" value="red" id="red">
+                    <label for="red"></label>
+                  </li>
                 </ul>
               </fieldset>
             </dd>
@@ -175,7 +174,7 @@
     };
     if (document.documentElement.clientWidth < 769) {
       console.log('screen width ' + document.documentElement.clientWidth + 'px - load jquery slider with dependens');
-      document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-1.11.0.min.js"><\/script>');
+      document.write('<script type="text/javascript" src="js\/jquery.min.js"><\/script>');
       document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-migrate-1.2.1.min.js"><\/script>');
       document.write('<script type="text/javascript" src="js\/scripts.js"><\/script>');
     };
