@@ -1,5 +1,12 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<!–[if IE 8 ]>
+<html lang="en" class="ie8″> <![endif]–>
+<!–[if IE 9 ]> <html lang=" en " class="ie9″>
+<![endif]–>
+<!–[if (gt IE 9)|!(IE)]>
+<!–>
+<html lang="en">
+<!–<![endif]–>
 
 <head>
   <meta charset="UTF-8">
@@ -11,14 +18,14 @@
   <link href="favicon.ico" rel="shortcut icon">
   <!-- css + javascript -->
   <link rel="stylesheet" href="style.css" media="all">
-
-  <!--[if lt IE 9]>
+  <!--   [if lt IE 9]> -->
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="js/html5shiv.min.js"></script>
   <script src="js/respond.min.js"></script>
   <script src="js/selectivizr.min.js"></script>
-  <!--<![endif] -->
-
+  <!--   <![endif] -->
   <script type="text/javascript" src="///cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
 
 </head>
 
@@ -55,7 +62,7 @@
             <dt>
               <label for="size">Size</label>
             </dt>
-            <dd>
+            <dd class="has-select">
               <select id="size">
                 <option>S</option>
                 <option>L</option>
@@ -66,7 +73,7 @@
             <dt>
               <label for="quantity">Quantity</label>
             </dt>
-            <dd>
+            <dd class="has-select">
               <select id="quantity">
                 <option>1</option>
                 <option>2</option>
@@ -107,7 +114,7 @@
               <a class="fa fa-facebook" href="#"></a>
             </li>
             <li class="social-tw">
-              <a class="fa  fa-twitter" href="#"></a>
+              <a class="fa fa-twitter" href="#"></a>
             </li>
             <li class="social-gp">
               <a class="fa fa-google-plus" href="#"></a>
@@ -166,50 +173,13 @@
         d.className = "show-additional show-additional-show";
       }
     };
-
-    // function set_margin() {
-    //   var f = document.getElementById('select-color-cont'),
-    //   gB = f.offsetWidth,
-    //   nodes = f.childNodes;
-    //   g = gB - 1;
-    //   if (g > 193 && gB != 218) {
-    //     j = 100 * 43 / g;
-    //     j = j * 4;
-    //     k = 100 - j;
-    //     k = k / 3;
-    //     for(var i=0; i<nodes.length; i++) {
-    //         if (nodes[i].nodeName.toLowerCase() == 'li') {
-    //              nodes[1].style.marginRight  = k + '%';
-    //              nodes[5].style.marginRight  = k + '%';
-    //              nodes[3].style.marginRight  = k + '%';
-    //          }
-    //     };
-    //   }
-    // };
-    // document.addEventListener("DOMContentLoaded", set_margin);
+    if (document.documentElement.clientWidth < 769) {
+      console.log('screen width ' + document.documentElement.clientWidth + 'px - load jquery slider with dependens');
+      document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-1.11.0.min.js"><\/script>');
+      document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-migrate-1.2.1.min.js"><\/script>');
+      document.write('<script type="text/javascript" src="js\/scripts.js"><\/script>');
+    };
   </script>
-
-<script>
-if (screen && screen.width > 769) {
-  console.log('on small screen - load jquery slider with dependens');
-  document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-1.11.0.min.js"><\/script>');
-  document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-migrate-1.2.1.min.js"><\/script>');
-  document.write('<script type="text/javascript" src="\/\/cdn.jsdelivr.net\/jquery.slick\/1.5.0\/slick.min.js"><\/script>');
-  document.write('<script type="text/javascript" src="js\/scripts.js"><\/script>');
-}
-</script>
-
-<!--   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>
- -->
-  <script>
-
-  </script>
-
-
-
-
 </body>
 
 </html>

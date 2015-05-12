@@ -11,22 +11,33 @@ $icon-home: x y offset_x offset_y width height total_width total_height image_pa
 At the bottom of this section, we provide information about the spritesheet itself
 $spritesheet: width height image $spritesheet-sprites;
 */
-$sprite-logo-name: 'sprite-logo';
-$sprite-logo-x: 0px;
-$sprite-logo-y: 0px;
-$sprite-logo-offset-x: 0px;
-$sprite-logo-offset-y: 0px;
-$sprite-logo-width: 512px;
-$sprite-logo-height: 512px;
-$sprite-logo-total-width: 512px;
-$sprite-logo-total-height: 512px;
-$sprite-logo-image: '../img/sprite.png';
-$sprite-logo: (0px, 0px, 0px, 0px, 512px, 512px, 512px, 512px, '../img/sprite.png', 'sprite-logo', );
-$spritesheet-width: 512px;
-$spritesheet-height: 512px;
+$sprite-ico-bdr-h-name: 'sprite-ico-bdr-h';
+$sprite-ico-bdr-h-x: 0px;
+$sprite-ico-bdr-h-y: 0px;
+$sprite-ico-bdr-h-offset-x: 0px;
+$sprite-ico-bdr-h-offset-y: 0px;
+$sprite-ico-bdr-h-width: 33px;
+$sprite-ico-bdr-h-height: 33px;
+$sprite-ico-bdr-h-total-width: 66px;
+$sprite-ico-bdr-h-total-height: 33px;
+$sprite-ico-bdr-h-image: '../img/sprite.png';
+$sprite-ico-bdr-h: (0px, 0px, 0px, 0px, 33px, 33px, 66px, 33px, '../img/sprite.png', 'sprite-ico-bdr-h', );
+$sprite-ico-bdr-name: 'sprite-ico-bdr';
+$sprite-ico-bdr-x: 33px;
+$sprite-ico-bdr-y: 0px;
+$sprite-ico-bdr-offset-x: -33px;
+$sprite-ico-bdr-offset-y: 0px;
+$sprite-ico-bdr-width: 33px;
+$sprite-ico-bdr-height: 33px;
+$sprite-ico-bdr-total-width: 66px;
+$sprite-ico-bdr-total-height: 33px;
+$sprite-ico-bdr-image: '../img/sprite.png';
+$sprite-ico-bdr: (33px, 0px, -33px, 0px, 33px, 33px, 66px, 33px, '../img/sprite.png', 'sprite-ico-bdr', );
+$spritesheet-width: 66px;
+$spritesheet-height: 33px;
 $spritesheet-image: '../img/sprite.png';
-$spritesheet-sprites: ($sprite-logo, );
-$spritesheet: (512px, 512px, '../img/sprite.png', $spritesheet-sprites, );
+$spritesheet-sprites: ($sprite-ico-bdr-h, $sprite-ico-bdr, );
+$spritesheet: (66px, 33px, '../img/sprite.png', $spritesheet-sprites, );
 
 /*
 The provided mixins are intended to be used with the array-like variables

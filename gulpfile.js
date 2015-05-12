@@ -203,7 +203,6 @@ gulp.task('default', ['clearPluginCache', 'scripts', 'styles', 'fonts'], functio
   gulp.watch(appFiles.styles, ['styles', reload]);
   gulp.watch(paths.sprite.src, ['styles', reload]);
   gulp.watch(paths.fonts.src, ['fonts', reload]);
-  gulp.watch(appFiles.scripts, ['jshint']);
   gulp.watch(appFiles.scripts, ['scripts', reload]);
 
 });
@@ -239,7 +238,6 @@ gulp.task('serve', ['clearPluginCache', 'sprite', 'image', 'webp', 'scripts', 's
   gulp.watch(appFiles.styles, ['styles', reload]);
   gulp.watch(paths.sprite.src, ['styles', reload]);
   gulp.watch(paths.fonts.src, ['fonts', reload]);
-  gulp.watch(appFiles.scripts, ['jshint']);
   gulp.watch(appFiles.scripts, ['scripts', reload]);
 
 });
