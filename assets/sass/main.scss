@@ -25,6 +25,8 @@ body {
   font-size: 14px;
   font-weight: normal;
 
+  min-width: 340px;
+
   color: $color;
   background-color: #fff;
 }
@@ -138,23 +140,34 @@ section {
       }
     }
     .select-color {
+      ul {
+        font-size: 0;
+
+        text-align: justify;
+        &:after {
+          display: inline-block;
+
+          width: 100%;
+
+          content: '';
+        }
+      }
       li {
+        font-size: medium;
+
         display: inline-block;
 
         width: 19.72%;
+        max-width: 43px;
         height: 43px;
-        margin: 0 2.29%;
 
         cursor: pointer;
+        text-align: left;
+        vertical-align: top;
 
         border: 2px solid transparent;
-        &:first-child {
-          margin-right: 3.21%;
-          margin-left: 0;
-        }
         &:last-child {
-          margin-right: 0;
-          margin-left: 3.21%;
+          margin: 0 !important;
         }
         &:hover {
           border-color: lighten(#d2d2d2, 15%);
@@ -391,8 +404,8 @@ section {
       padding: 65px 45px 0;
 
       content: '';
-
-      background-color: rgba(0, 0, 0, .2);
+transition: all 0.7s;
+      background-color: transparent;
     }
     img {
       width: 100%;
@@ -456,6 +469,9 @@ section {
 
         opacity: 1;
       }
+      span {
+        background-color: rgba(0, 0, 0, .2);
+      }
     }
   }
 }
@@ -514,39 +530,6 @@ section {
       .select-color {
         width: 100%;
         min-width: 195px;
-        ul {
-          display: block;
-          overflow: hidden;
-
-          width: 100%;
-          height: 43px;
-
-          background-color: red;
-        }
-        li {
-          display: inline-block;
-          float: left;
-
-          width: 43px;
-          height: 43px;
-          margin: 0;
-          margin: 0 2% 0 0;
-
-          cursor: pointer;
-          text-align: justify;
-
-          border: 2px solid transparent;
-          &:first-child {
-            margin-right: 2%;
-            margin-left: 0;
-          }
-          &:last-child {
-            margin: 0 !important;
-          }
-          &:hover {
-            border-color: lighten(#d2d2d2, 15%);
-          }
-        }
       }
       .price {
         margin: 0 0 25px;
@@ -628,13 +611,6 @@ section {
 
         background-color: #e8e8e8;
       }
-    }
-    .slick-prev,
-    .slick-next {
-    }
-    .slick-next {
-    }
-    .slick-prev {
     }
   }
 }

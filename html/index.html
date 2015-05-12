@@ -167,30 +167,31 @@
       }
     };
 
-    function set_margin() {
-      var f = document.getElementById('select-color-cont'),
-      gB = f.offsetWidth,
-      nodes = f.childNodes;
-      g = gB - 1;
-      if (g > 193 && gB != 218) {
-        j = 100 * 43 / g;
-        j = j * 4;
-        k = 100 - j;
-        k = k / 3;
-        for(var i=0; i<nodes.length; i++) {
-            if (nodes[i].nodeName.toLowerCase() == 'li') {
-                 nodes[i].style.marginRight  = k + '%';
-             }
-        }
-        document.getElementById('select-color-cont').getElementsByTagName('li')[0,1,2].style.marginRight  = k + '%';
-      }
-    };
-    document.addEventListener("DOMContentLoaded", set_margin);
+    // function set_margin() {
+    //   var f = document.getElementById('select-color-cont'),
+    //   gB = f.offsetWidth,
+    //   nodes = f.childNodes;
+    //   g = gB - 1;
+    //   if (g > 193 && gB != 218) {
+    //     j = 100 * 43 / g;
+    //     j = j * 4;
+    //     k = 100 - j;
+    //     k = k / 3;
+    //     for(var i=0; i<nodes.length; i++) {
+    //         if (nodes[i].nodeName.toLowerCase() == 'li') {
+    //              nodes[1].style.marginRight  = k + '%';
+    //              nodes[5].style.marginRight  = k + '%';
+    //              nodes[3].style.marginRight  = k + '%';
+    //          }
+    //     };
+    //   }
+    // };
+    // document.addEventListener("DOMContentLoaded", set_margin);
   </script>
 
 <script>
 if (screen && screen.width > 769) {
-  console.log('if small screen - load jquery slider');
+  console.log('on small screen - load jquery slider with dependens');
   document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-1.11.0.min.js"><\/script>');
   document.write('<script type="text/javascript" src="\/\/code.jquery.com\/jquery-migrate-1.2.1.min.js"><\/script>');
   document.write('<script type="text/javascript" src="\/\/cdn.jsdelivr.net\/jquery.slick\/1.5.0\/slick.min.js"><\/script>');
